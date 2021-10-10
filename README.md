@@ -4,6 +4,7 @@
 - This repo will hold any programming or adjacent work done in the course.
 - I will also be keeping my notes here for the most important stuff I will learn.
 >NOTE: This repo will not contain any answers for programming assignments, but just my notes, any work done while following the videos and my own implementations of some stuff.
+
 >ANOTHER NOTE: Some `.md` files contain inline equations (in the LATEX format), you might have to use a mardown viewer which supports it (vscode is good for that).
 
 # The course

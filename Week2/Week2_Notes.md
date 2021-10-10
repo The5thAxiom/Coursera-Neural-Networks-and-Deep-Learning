@@ -1,18 +1,20 @@
+> NOTE: in the slides, the instructor write $x_1$ as $x^{(1)}$, a mi no me gusta.
+
 # Logistic Regression as a Neural Network
 ## Binary Classification
-- Example:
-    - For recognising cats, each image is either a cat(1) or not a cat(0) thus the images are classified into two (thus, binary classification).
-    - Each input image is in form of 3 matrices (for the RGB values of each pixel)
-    - $x$ is a feature vector which lists all the Red, Green and Blue values (if the image is 64 by 64 pixels, x will have $64 \times 64 \times 3$ values and thus, will be a $12288 \times 1$ matrix (or vector))
-    - Thus, $n_x = 12288$ ($n_x$ might be written $n$ for brevity)
-    - This NN will take in $x$ and produce the output $y$ which will either be $1$ or $0$.
-- Notation:
-    - $m$ or $m_{train}$ denote the number of training examples.
-    - $m_{test}$ denotes the number of test examples.
-    - A single training example: $(x, y)$ where $x \in \mathbb{R} ^{n_x}$ (x is an n_x dimensional feature vector) and $y \in \{0, 1\}$.
-    - $m$ training examples: $(x_1, y_1), (x_2, y_2), (x_3, y_3), ... (x_m, y_m)$.
-    - $X = [x_1\ x_2\ x_3\ ...\ x_m]$ where $X$ is a $n_x$ by $m_{train}$ matrix denoting all the training examples (running `X.shape` in python should give `(nx, m)`).
-    - $Y = [y_1\ y_2\ y_3\ ...\ y_m]$ where $Y$ is  $1$ by $m$ matrix (running `Y.shape` in python should give `(1, m)`).
+### Example:
+- For recognising cats, each image is either a cat(1) or not a cat(0) thus the images are classified into two (thus, binary classification).
+- Each input image is in form of 3 matrices (for the RGB values of each pixel)
+- $x$ is a feature vector which lists all the Red, Green and Blue values (if the image is 64 by 64 pixels, x will have $64 \times 64 \times 3$ values and thus, will be a $12288 \times 1$ matrix (or vector))
+- Thus, $n_x = 12288$ ($n_x$ might be written $n$ for brevity)
+- This NN will take in $x$ and produce the output $y$ which will either be $1$ or $0$.
+### Notation:
+- $m$ or $m_{train}$ denote the number of training examples.
+- $m_{test}$ denotes the number of test examples.
+- A single training example: $(x, y)$ where $x \in \mathbb{R} ^{n_x}$ (x is an n_x dimensional feature vector) and $y \in \{0, 1\}$.
+- $m$ training examples: $\{(x_1, y_1), (x_2, y_2), (x_3, y_3), ... (x_m, y_m)\}$.
+- $X = [x_1\ x_2\ x_3\ ...\ x_m]$ where $X$ is a $n_x$ by $m_{train}$ matrix denoting all the training examples (running `X.shape` in python should give `(nx, m)`).
+- $Y = [y_1\ y_2\ y_3\ ...\ y_m]$ where $Y$ is  $1$ by $m$ matrix (running `Y.shape` in python should give `(1, m)`).
 ## Logistic Regression
 - A learning algorithm used when $y$ (for supervised learning) is either $0$ or $1$.
 - Given, $x$ we want, $\hat{y} = P(y=1|x)$ (the probability of y being $1$ given $x$).
@@ -28,4 +30,52 @@
 ## Logistic Regression Cost Function
 - We need to define a cost function to train the parameters $w$ and $b$.
 - We know that, $\hat{y} = \sigma(w^T\cdot x + b)$ where $\sigma(z) = \frac{1}{1 + e^{-z}},\ iff\ z \in \mathbb{R}$.
+- We want $\hat{y}_i \approx y_i$ for $m$ training examples $\{(x_1, y_1), (x_2, y_2), (x_3, y_3), ... (x_m, y_m)\}$ ($\hat{y}_i = \sigma(w^T\cdot x_i + b)$)
+### Loss or Error Function
+- Used to measure how our algorithm is doing.
+- We want the loss function to be as small as possible.
+- $\mathfrak{L}(\hat{y}, y) = -(y \log \hat{y} + (1-y)\log (1-\hat{y}))$.
+    - for $y=1$, $\mathfrak{L}(\hat{y}, 1) = -\log \hat{y}$ (here, we want $\hat{y}$ to be large, but because it's a sigmoid function, it's largest value will be 1)
+    - for $y=0$, $\mathfrak{L}(\hat{y}, 0) = -\log (1-\hat{y})$ (here, we want $\hat{y}$ to be as small as possible)
+### Cost function:
+- $J(w, b) = \frac{1}{m} \sum_{i=1}^{m}\mathfrak{L}(\hat{y}_i, y_i) = $
+- thus, $J(w, b) = -\frac{1}{m} \sum_{i=1}^{m}(y_i \log \hat{y}_i + (1-y_i)\log (1-\hat{y}_i))$
+- J = the average of the Loss function for the entire training set
+- We want to find $w$ and $b$ which will minimize $J(w, b)$.
+- What I think will happening: J tells us how bad the NN is doing, we want J to be as low as possible. So we make a NN which tries values of w and b and tries to minimise the cost function.
+## Gradient Descent
+- Used to train $w$ and $b$.
+- We basically find the minima of $J(w, b)$ as it is convex a surface (in 3-d space where: $z = J(w, b);\ x = w;\ y = b$)
+- We will initialise the values of $w$ and $b$, and go steeper until we reach the global minimum (or close enough to it)
+> is this is going to be class 1st sem calc (which was scary)??.
+- After initializing $w$, we do `w := w - alpha * dw` (where `dw` = $\partial w = \frac{\partial J(w, b)}{\partial w}$) in a loop until we reach the minima (this will go down until the minimum is reached) (alpha = learning rate)
+- For $b$: `b := b - alpha * db` (where `db` = $\partial b = \frac{\partial J(w, b)}{\partial b}$) (and hope that the two values converge I guess?)
+- Both $b$ and $w$ descend until the minimum value is found.
+## Computation Graphs
+- A way of organising computations into forward and backward passes.
+- The forward pass results in the result and the backward pass results in the derivative.
+- This part felt kinda useless, i don't understand why these are useful, which will hopefully not be the case in a while.
+- While writing the code, represent something like $\frac{d(J)}{d(var)}$ as `dvar` (J is there implicitly)
+- Example:
+    - ```
+        a = 5, b = 3, c = 2
+        u = bc, v = a + u, J = 3v
+
+        a------------V
+                    v=a+u -------> J = 3v
+        b---v        /\
+            u=bc------|
+        c---^
+        ```
+    - Finding the result:
+        - u = 6
+        - v = 11
+        - J = 33
+        - Here, we are going forwards
+    - Finding the derivative (da): (remember dJ/da=da)
+        - dv
+        - du
+        - da
+        - here, we are going backwards
+## Logistic Regression Gradient Descent
 - 
