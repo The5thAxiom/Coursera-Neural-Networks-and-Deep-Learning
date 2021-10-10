@@ -5,7 +5,7 @@
 - I will also be keeping my notes here for the most important stuff I will learn.
 >NOTE: This repo will not contain any answers for programming assignments, but just my notes and my own implementations of what I have been taught.
 
-#The course
+# The course
 - This course is only the 1st in a series of 5 courses which are:
 	1. Neural Networks and Deep Learning
 	2. Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
