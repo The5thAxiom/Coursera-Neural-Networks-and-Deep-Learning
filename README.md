@@ -3,7 +3,7 @@
 - VIT provided one free _Coursera_ course so I chose this one.
 - This repo will hold any programming or adjacent work done in the course.
 - I will also be keeping my notes here for the most important stuff I will learn.
->NOTE: This repo will not contain any answers for programming assignments, but just my notes and my own implementations of what I have been taught.
+>NOTE: This repo will not contain any answers for programming assignments, but just my notes, any work done while following the videos and my own implementations of some stuff.
 
 # The course
 - This course is only the 1st in a series of 5 courses which are:
