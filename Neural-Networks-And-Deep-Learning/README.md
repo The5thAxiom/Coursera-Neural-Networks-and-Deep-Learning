@@ -1,11 +1,6 @@
 # Coursera-Neural-Networks-and-Deep-Learning
-- A repo for the course work done for the Coursera 'Neural Networks and Deep Learning' course by DeepLearning AI.
 - VIT provided one free _Coursera_ course so I chose this one.
-- This repo will hold any programming or adjacent work done in the course.
 - I will also be keeping my notes here for the most important stuff I will learn.
->NOTE: This repo will not contain any answers for programming assignments, but just my notes, any work done while following the videos and my own implementations of some stuff.
-
->ANOTHER NOTE: Some `.md` files contain inline equations (in the LATEX format), you might have to use a mardown viewer which supports it (vscode is good for that).
 
 # The course
 - This course is only the 1st in a series of 5 courses(called a [specialization](https://www.coursera.org/specializations/deep-learning) by coursera) which are:
