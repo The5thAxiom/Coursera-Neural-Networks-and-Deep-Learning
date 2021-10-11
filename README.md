@@ -8,7 +8,7 @@
 >ANOTHER NOTE: Some `.md` files contain inline equations (in the LATEX format), you might have to use a mardown viewer which supports it (vscode is good for that).
 
 # The course
-- This course is only the 1st in a series of 5 courses which are:
+- This course is only the 1st in a series of 5 courses(called a [specialization](https://www.coursera.org/specializations/deep-learning) by coursera) which are:
 	1. Neural Networks and Deep Learning
 	2. Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
 	3. Structuring your Machine Learning project
