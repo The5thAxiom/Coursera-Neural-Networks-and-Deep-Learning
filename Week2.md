@@ -231,7 +231,7 @@ b = b - alpha * db
         - We then do a forward pass to get the value of J, which tells us how bad we're doing
         - Then we go backwards and get the values of dw and db (the slopes of the graphs)
         - Then we perform gradient descent for both w and b (hopefully to get to the minimum value of J)
-## Broadcasting in Python
+## Broadcasting in Python and other stuff
 - in Week2.ipynb
 ## 
 
