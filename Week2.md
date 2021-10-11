@@ -32,12 +32,12 @@
 ### Loss or Error Function
 - Used to measure how our algorithm is doing.
 - We want the loss function to be as small as possible.
-- $\mathfrak{L}(\hat{y}, y) = -(y \log \hat{y} + (1-y)\log (1-\hat{y}))$.
+- $\mathfrak{L}(\hat{y},\ y) = -(y \log \hat{y} + (1-y)\log (1-\hat{y}))$.
     - for $y=1$, $\mathfrak{L}(\hat{y}, 1) = -\log \hat{y}$ (here, we want $\hat{y}$ to be large, but because it's a sigmoid function, it's largest value will be 1)
     - for $y=0$, $\mathfrak{L}(\hat{y}, 0) = -\log (1-\hat{y})$ (here, we want $\hat{y}$ to be as small as possible)
 ### Cost function:
-- $J(w, b) = \frac{1}{m} \sum_{i=1}^{m}\mathfrak{L}(\hat{y}^{(i)}, y^{(i)}) = $
-- thus, $J(w, b) = -\frac{1}{m} \sum_{i=1}^{m}(y^{(i)} \log \hat{y}^{(i)} + (1-y^{(i)})\log (1-\hat{y}^{(i)}))$
+- $J(w,\ b) = \frac{1}{m} \sum_{i=1}^{m}\mathfrak{L}(\hat{y}^{(i)},\ y^{(i)})$
+- thus, $J(w,\ b) = -\frac{1}{m} \sum_{i=1}^{m}(y^{(i)} \log \hat{y}^{(i)} + (1-y^{(i)})\log (1-\hat{y}^{(i)}))$
 - J = the average of the Loss function for the entire training set
 - We want to find $w$ and $b$ which will minimize $J(w, b)$.
 - What I think will happening: J tells us how bad the NN is doing, we want J to be as low as possible. So we make a NN which tries values of w and b and tries to minimise the cost function.
