@@ -64,6 +64,39 @@
 - $g(z) = \max(0.01 \times z, z)$
 - $g\prime(z) = \frac{dg(z)}{dz} = \begin{cases} 0.01 & if z < 0 \\1 & if z > 0 \\ undefined & if z = 0\end{cases}$
 ## Gradient Descent for Neural Networks
-- Parameters:
-    - 
+### Parameters
+- $W^{[1]}$, $b^{[1]}$, $W^{[2]}$ and $b^{[2]}$.
+- $n_x = n^{[0]}$, $n^{[1]}$ and $n^{[2]} = 1$
+- $J(W^{[1]},\ b^{[1]},\ W^{[2]},\ b^{[2]}) = \frac{1}{m}\sum_{i = 1}^n\mathfrak{L}(A^{[2]}, Y)$
+### Steps
+- Each iteration will repeat the following steps
+- predict $A^{[2]}$ aka $\hat{Y}$
+- calculate $dW^{[1]} = \frac{dJ}{dw^{[1]}},\ db^{[1]} = \frac{dJ}{db^{[1]}},\ \dots$
+- $W^{[1]} = W^{[1]} - \alpha \cdot dW^{[1]}\\ \vdots$
+- these are basically what we did in LR but with the square brackets (multiple nodes and multiple layers)
+### Formulas
+#### Forward Propogation
+- $Z^{[1]} = {W^{[1]}}^T \cdot A^{[0]} + b^{[1]}$
+- $A^{[1]} = g^{[1]}(Z^{[1]})$
+- $Z^{[2]} = {W^{[2]}}^T \cdot A^{[1]} + b^{[2]}$
+- $A^{[2]} = g^{[2]}(Z^{[2]}) = \sigma(Z^{[2]})$
+#### Backward Propogation
+- $dZ^{[2]} = A^{[2]} - Y$
+- $dW^{[2]} = \frac{1}{m}dZ^{[2]}\cdot {A^{[1]}}^T$
+- $db^{[2]} = \frac{1}{m} \cdot$`np.sum(`$dZ^{[2]}$`, axis = 1, keepdims = True)`
+- $dZ^{[1]} = {W^{[2]}}^T\cdot dZ^{[2]} \times g^{[1]}\prime(Z^{[1]})$ ($\times$ is the element-wise product (`*` in numpy))
+- $dW = \frac{1}{m}dZ^{[1]}\cdot X^T$
+- $db^{[1]} = \frac{1}{m}$`np.sum(`$dZ^{[1]}$`, axis = 1, keepdims = True)`
 ## Random Initialization
+### Why random?
+- Initializing the w's and b's with zeroes works fine for logistic regression but won't work for a neural network.
+- If we do initialize them with zeroes, every node in a layer will be doing, essentially the same thing, which defeats the entire purpose of having different layers and nodes.
+- The nodes become "symmetric" which means they are giving the same values.
+- Thus, we need to give w random values to prevent the symmetry problem.
+### How
+- $W^{[1]}$ `= np.random.randn(<whatever the shape is>)) * 0.01` (we multiply by this 'small value')
+- $W^{[2]}$ `= np.random.randn(<whatever the shape is>)) * 0.01`
+- the b's can still be all zeroes, that will not cause any symmetry.
+### The small value:
+- Used to keep the values of W small so we don't go to the flatter parts of the tanh and sigmoid functions.
+- 0.01 works for a shallow network like this, but other lectures will get into selecting this value in more detail
