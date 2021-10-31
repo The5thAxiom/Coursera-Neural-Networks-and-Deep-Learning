@@ -23,7 +23,7 @@
 - Each node of a NN does logistic regression.
 - For example:
     - The 1st node of the hidden layer: $z^{[1]}_1 = {w^{[1]}_1}^{T} \cdot x + b^{[1]}_1$ and $a^{[1]}_1 = \sigma(z^{[1]}_1)$.
-    - The 2nd node of the hidden layer$z^{[1]}_2 = {w^{[1]}_2}^{T} \cdot x + b^{[1]}_2$ and $a^{[1]}_2 = \sigma(z^{[1]}_2)$.
+    - The 2nd node of the hidden layer $z^{[1]}_2 = {w^{[1]}_2}^{T} \cdot x + b^{[1]}_2$ and $a^{[1]}_2 = \sigma(z^{[1]}_2)$.
     - and so on
 - The hidden layer outputs: $a^{[1]}_1$, $a^{[1]}_2$, $a^{[1]}_3$ and $a^{[1]}_4$
 - By stacking them in a column vector, we will get $z^{[1]} = {W^{[1]}}^T \cdot a^{[0]} + b^{[1]}$ and $a^{[1]} = \sigma(z^{[1]})$ for the 1st layer and $z^{[2]} = {W^{[2]}}^T \cdot a^{[0]} + b^{[2]}$ and $a^{[2]} = \sigma(z^{[1]})$ for the 2st layer.
