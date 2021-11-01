@@ -60,7 +60,7 @@
 #### ReLU
 - $g(z) = \max(0, z)$
 - $g\prime(z) = \frac{dg(z)}{dz} = \begin{cases} 0 & if z < 0 \\1 & if z > 0 \\ undefined & if z = 0\end{cases}$
-### Leanky ReLU
+### Leaky ReLU
 - $g(z) = \max(0.01 \times z, z)$
 - $g\prime(z) = \frac{dg(z)}{dz} = \begin{cases} 0.01 & if z < 0 \\1 & if z > 0 \\ undefined & if z = 0\end{cases}$
 ## Gradient Descent for Neural Networks

@@ -6,7 +6,7 @@
 - Input and output are not hidden layers, no. of layers = no of hidden layers + 1
 ## Forward Propagation
 - Vectorized formulas:
-    - $Z^{[l]} = {W^{[l]}}^T \cdot A^{[l-1]} + b^{[l]}$
+    - $Z^{[l]} = {W^{[l]}} \cdot A^{[l-1]} + b^{[l]}$
     - $A^{[l]} = g^{[l]}(Z^{[l]})$
 - These must be done for each layer in a for-loop, we can't vectorize this one.
 ## Matrix Dimensions
@@ -27,8 +27,8 @@
 ## Forward and Backward Propagation
 - Forward($A^{[l-1]}$)
     - $Z^{[l]}$ = np.dot($W^{[l]}$, $A^{[l-1]}$) + $b^{[l]}$
-    - $Z^{[l]}$ = $g^{[l]}$($Z^{[l]}$)
-    - return cache{$Z^{[l]}$, $W^{[l]}$, $b^{[l]}$}
+    - $A^{[l]}$ = $g^{[l]}$($Z^{[l]}$)
+    - return cache{$A^{[l]}$, $W^{[l]}$, $b^{[l]}$}
 - Backward($dA^{[l]}$, cache)
     - $dZ^{[l]}$ = $dA^{[l]}$ * $g^{[l]}$'($Z^{[l]}$)
     - $dW^{[l]}$ = np.dot($dZ^{[l]}$, $A^{[l-1]}$.T) / $m_{train}$
