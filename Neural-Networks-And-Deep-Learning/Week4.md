@@ -3,6 +3,7 @@
 - Logistic regression is a very shallow NN, while one with say 5 layers is a relatively deep NN.
 - Deeper NNs can do some stuff which is too difficult for a shallow one.
 - The notation is basically the same.
+- Input and output are not hidden layers, no. of layers = no of hidden layers + 1
 ## Forward Propagation
 - Vectorized formulas:
     - $Z^{[l]} = {W^{[l]}}^T \cdot A^{[l-1]} + b^{[l]}$

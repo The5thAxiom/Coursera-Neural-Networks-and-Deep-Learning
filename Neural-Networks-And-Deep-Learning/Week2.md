@@ -106,7 +106,7 @@
 - Also:
     - $\frac{\partial}{\partial w_1}J(w, b) = -\frac{1}{m} \sum_{i=1}^{m}\frac{\partial}{\partial w_1^{(i)}} (y^{(i)} \log a^{(i)} + (1-y^{(i)})\log (1-a^{(i)}))$
 - Algorithm:
-    - ```
+    - ```python
         J = 0
         dw1 = 0
         dw2 = 0
@@ -116,8 +116,8 @@
             ai = sigma(zi)
             J += -(yi*log(ai) + (1-yi)*log(1-ai))
             dzi = ai - yi
-            dw1 += x1i*dzi
-            dw2 += x2i*dzi
+            dw1 += x1i * dzi
+            dw2 += x2i * dzi
             db += dzi
         J /= m
         dw1 /= m
@@ -152,7 +152,7 @@ u = np.exp(v)
 print(u)
 ```
 - Our logistic Regression Code:
-```
+```python
 J = 0
 dw1 = 0
 dw2 = 0
