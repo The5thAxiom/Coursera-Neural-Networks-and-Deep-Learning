@@ -1,5 +1,7 @@
 # Shallow Neural Networks (One hidden layer)
+
 ## Overview
+
 - $x^{(i)}$ meant the ith example, here $w^{[i]}$ refers to the ith layer of the Neural Network.
 - steps:
     - $z^{[1]} = W^{[1]} \cdot x + b^{[1]}$
