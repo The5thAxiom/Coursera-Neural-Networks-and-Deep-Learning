@@ -207,3 +207,59 @@ class RatNum(x: Int, y: Int):
         else ???
         end if
         ```
+
+## Evaluation and Operators
+- Substitution method but for objects
+- A constructor is just a normal function that returns a value (of the type of the class)
+- How to evaluate: `C(v1, v2, ... vm).f(w1, w2, ... wn)` for a class `C(x1, ... xm) {... def f(y1, ... yn) = b ... }`
+    - Substitute the parameters of f with the arguments
+    - Substitute the parameters of C with the arguments
+    - Substitute `this` with `C(v1, ... vm)`
+- Extension methods:
+    - A class might have quite a large number of methods, which isn't very modular.
+    - Some methods don't need access to the internals of a class
+    - They can be defined as extension methods:
+        ```scala
+        extension (r: RatNum)
+            def min(s: Ratnum): Boolean = if s.less(r) then s else r
+            def abs: RatNum = RatNum(r.num.abs, r.den)
+        ```
+    - Extensions are visible if they are defined with the class or visible in the current scope.
+    - Anyone can define extensions wherever they want
+    - Extensions can only add new members and not override existing ones
+    - Extensions cannot refer to other class members via `this`
+- Operators:
+    - Operators are also identifiers in scala and can be used as method names:
+        ```scala
+        extension (x: RatNum)
+            def + (y: RatNum): RatNum = x.add(y)
+            def * (y: RatNum): RatNum = x.multiply(y)
+        ```
+    - Now, we can use these operators like we do on operators: `val a = RatNum(1, 2); val b = RatNum(3, 2); val c = a * a - b`
+    - `a.+(b)` is the same as `a + b`, as they are methods with a single parameter
+    - Any method with a single parameter can be made infix like this: 
+        ```scala
+        extension(a: Int)
+            infix def mod(b: Int): Int = a % b
+        
+        // usage:
+        val x = 5 mod 3 // val x: Int = 5
+        ```
+- Precedence:
+    - Determined by the first character
+    ```
+    <special characters>
+    * / %
+    + -
+    :
+    = !
+    < >
+    &
+    ^
+    |
+    <all letters (including _)>
+    ```
+    - Question: parenthesize: `a + b ^? c ?^ d less a ==> b | c`
+        - Answer: `(((a + b) ^? (c ?^ d)) less ((a ==> b) | c))`
+
+##
