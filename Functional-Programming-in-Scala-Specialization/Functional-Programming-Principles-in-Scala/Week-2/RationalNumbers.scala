@@ -12,8 +12,16 @@ def makeString(x: OldRationalNumber): String =
     s"${x.num}/${x.den}"
 
 class RatNum(x: Int, y: Int):
-    def num: Int = x
-    def den: Int = y
+    def this(x: Int) = this(x, 1)
+
+    require(y > 0, "The denominator must be positive")
+    private def gcd(a: Int, b: Int): Int =
+        if b == 0 then a else gcd(b, a % b)
+    private val g = gcd(x.abs, y)
+    def num = x/g
+    def den = y/g
+
+    // Arithmetic
     def add(a: RatNum): RatNum =
         RatNum(this.num * a.den + a.num * this.den, this.den * a.den)
     def subtract(a: RatNum): RatNum=
@@ -26,6 +34,8 @@ class RatNum(x: Int, y: Int):
         RatNum(-this.num, this.den)
     def reciprocal: RatNum =
         RatNum(this.den, this.num)
+
+    // AllOperators
     def +(a: RatNum): RatNum =
         add(a)
     def -(a: RatNum): RatNum =
@@ -34,7 +44,7 @@ class RatNum(x: Int, y: Int):
         multiply(a)
     def /(a: RatNum): RatNum =
         divide(a)
-    def unary_-(): RatNum = this.neg
+    def unary_- = this.neg
     def < (a: RatNum): Boolean =
         this.num * a.den < this.den * a.num
     def > (a: RatNum): Boolean =
@@ -48,4 +58,4 @@ class RatNum(x: Int, y: Int):
     def >= (a: RatNum): Boolean =
         this.num * a.den >= this.den * a.num
     override def toString = s"${this.num}/${this.den}"
-
+end Rational // an 'end marker'

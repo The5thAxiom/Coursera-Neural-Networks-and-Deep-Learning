@@ -154,3 +154,56 @@ class RatNum(x: Int, y: Int):
     override def toString = s"${num}/${den}"
     // toString needs to be overriden cause its a function defined for the 'Object' class (remember, this is fully compatible with Java)
 ```
+
+## Data Abstraction
+- In the `RatNum` class, the number isn't always in its smallest form
+- The simplification could be in each operation, but a simpler way is to put it in the constructor:
+    ```scala
+    class RatNum(x: Int, y: Int):
+        private def gcd(a: Int, b: Int): Int =
+            if b == 0 then a else gcd(b, a % b)
+        private val g = gcd(x, y)
+        def num = x/g
+        def den = y/g
+        // the rest is the same
+    ```
+- In both the cases (with and without gcd (and in any implementation of gcd)), the usage is the same. This is called data abstraction, you can change the implementation without ever bugging the users of that class
+- The `this` keyword is used to access the current instance of the class (just like in C++, Java, etc)
+- Preconditions: we can require certain things from the user like:
+    ```scala
+    class Rational(x: Int, y: Int):
+        require(y > 0, "The denominator must be positive")
+    ```
+    - The `require` function is predefined.
+    - Failing the condition will throw an `IllegalArhumentException`
+- Assertions:
+    - they are certain conditions to check the functioning of the code (not the user, that is `require`'s job)
+    - Eg: `assert(x >= 0)` could be used in a sqrt function like: `val x = sqrt(y)`
+    - Failing an assertion results in an `AssertionError`
+- Constructors:
+    - Primary Constructor: the constructor defined by defining a class
+    - Auxiliary Constructors:
+        ```scala
+        class Rational(x: Int, y: Int):
+            def this(x: Int) = this(x, 1)
+        ```
+- End markers:
+    - for classes
+        ```scala
+        class thing(???):
+            // the body of the class
+        end thing
+        ```
+    - for functions
+        ```scala
+        def func(???): Int =
+            // the body of the function
+        end thing
+        ```
+    - for conditionals
+        ```scala
+        if ??? then // something
+        else if ??? then ???
+        else ???
+        end if
+        ```
