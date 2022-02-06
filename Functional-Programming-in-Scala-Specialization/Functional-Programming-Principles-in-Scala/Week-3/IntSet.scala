@@ -27,3 +27,8 @@ class NonEmpty(elem: Int, left: IntSet, right: IntSet) extends IntSet:
         // this.left.union(this.right).union(other).incl(this.elem) // this works but is inefficient (couldn't think of this myself )
     end union
 end NonEmpty
+
+object IntSet:
+    def apply(): IntSet = Empty
+    def apply(x: Int): IntSet = Empty.incl(x)
+end IntSet
