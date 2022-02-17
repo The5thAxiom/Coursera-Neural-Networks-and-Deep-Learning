@@ -194,3 +194,30 @@
             case Cash
         ```
 - Enums are usually used for pure data, where the operations on such data are defined elsewhere
+
+## Subtypes and Generics
+- Type bounds:
+    - `S <: T` means S is a subtype of T (upper boud)
+    - `S >: T` means S is a supertype of T or, T is a subtype of S (lowerbound)
+    - Use: `def funcName[S <: T](x: S): S`
+    - `S >: T <: U`, mixed bounds
+- Covariance:
+    - if `NonEmpty <: IntSet`, then is `List[NonEmpty] <: List[IntSet]`??
+    - Yes, $\because$ a list of non-empty sets is a special case of a list of arbitrary sets
+    - This is called covariance
+    - Arrays are not covariant
+- The Liskoff Substitution Principle
+    - if `A` <: `B`, then everything one can do with a value of type `B`, one should also be able to do with a value of type `A`
+
+## Variance
+- Any type that accepts mutations of its elements, it should not be covariant.
+- Variance:
+    - if `C[T]` is a parametrized type and `A`, `B` are types such that `A <: B`
+    - `C[A] <: C[B]`, `C` is _covariant_
+    - `C[A] <: C[B]`, `C` is _contravariant_
+    - neither `C[A]` nor `C[B]` is a subtype of the other, `C` is _nonvariant_
+    - In Scala, we can declare the variance of the type by annotating the type parameter:
+        - `class C[+A]`, `C` is _covariant_
+        - `class C[-A]`, `C` is _contravariant_
+        - `class C[A]`, `C` is _nonvariant_
+    - Kinda went over my head XD
