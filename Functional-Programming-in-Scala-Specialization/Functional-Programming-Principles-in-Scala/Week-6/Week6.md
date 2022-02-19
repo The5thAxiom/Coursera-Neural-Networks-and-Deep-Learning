@@ -138,6 +138,24 @@
         case None => -1
     ```
 - Updating:
-    -7:20, lecture 6.4
+    - `m + (k -> v)`: update/put (k, v) in m
+    - `m ++ kvs`: put all kvs in m
+- Sorted and GroupBy
+    - Example of sortWith and sorted:
+        ```scala
+        val fruits = List("apple", "pear", "orange")
+        fruits.sortWith(_.length < _.length) // arranges the elements by length
+        fruits.sorted // does the same
+        ```
+    - Eg: `fruits.groupBy(_.head)` will create a map with the keys being the heads(first letters) of the words
+- `val newAges = ages.withDefaultValue(0)`: newAges returns 0 for any key not in ages
+- Example: Polynomials using Maps
+    - Mapping exponents to coefficients
+    - See `poly.scala`
+- Variable length argument lists:
+    - see `poly.scala`
+    - this was mind blowing, woww
 
 ## Putting the Pieces Together
+- A function to givea all phrases which can be mnemonics for a given phone number
+- see `encode.scala`
